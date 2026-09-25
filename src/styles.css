@@ -258,3 +258,312 @@ textarea {
   .metrics { grid-template-columns: 1fr; }
   .details { grid-template-columns: 1fr; }
 }
+
+/* ================= 补油排程台样式 ================= */
+.dispatch-app .shell.wide { max-width: 1480px; }
+
+.head-actions { display: grid; gap: 12px; justify-items: end; }
+.head-actions button { white-space: nowrap; }
+
+.metrics-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+
+.layout-grid {
+  display: grid;
+  grid-template-columns: 320px minmax(380px, 1fr) 430px;
+  gap: 18px;
+  align-items: start;
+}
+
+.layout-grid > .panel,
+.layout-grid > .console-slot { min-width: 0; }
+
+/* ---- 通用状态标签 ---- */
+.state-chip {
+  font-style: normal;
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  background: #e8eef5;
+  color: #445069;
+}
+.state-chip.big { font-size: 13px; padding: 5px 14px; }
+.state-chip.st-正常, .station-card.st-正常 .state-chip { background: #e6f2f0; color: #14724f; }
+.state-chip.st-待卸 { background: #fdf0dd; color: #b36a0c; }
+.state-chip.st-紧张 { background: #fbe5e0; color: #c84b31; }
+.state-chip.truck-出车中 { background: #e7f0fb; color: #176b87; }
+.state-chip.truck-空闲 { background: #e8f4ef; color: #14724f; }
+.state-chip.truck-维修中 { background: #f0e8f5; color: #7a4aa0; }
+.state-chip.trip-dispatched { background: #e7f0fb; color: #176b87; }
+.state-chip.trip-arrived { background: #fdf0dd; color: #b36a0c; }
+.state-chip.trip-delivered { background: #e8f4ef; color: #14724f; }
+.state-chip.trip-no_show { background: #fbe5e0; color: #c84b31; }
+
+.warn, .overdue-text { color: #c84b31; }
+.warn.soft { color: #b36a0c; }
+b.warn { color: #c84b31; }
+
+.link-btn {
+  border: 0;
+  background: none;
+  padding: 0;
+  color: #176b87;
+  cursor: pointer;
+  font-size: 13px;
+  text-decoration: underline;
+}
+
+.hint { color: #8a93a5; font-size: 12px; }
+.grow { grid-column: 1 / -1; }
+
+/* ---- 左栏站点列表 ---- */
+.station-panel { position: sticky; top: 14px; max-height: calc(100vh - 28px); overflow: auto; }
+
+.sub-form {
+  display: grid;
+  gap: 10px;
+  border: 1px dashed #cfd8e5;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+  background: #fbfcfe;
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+.fuel-picker { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 13px; color: #445069; }
+.chip {
+  border: 1px solid #cfd8e5;
+  background: #fff;
+  color: #445069;
+  border-radius: 999px;
+  padding: 5px 12px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.chip.active { background: #176b87; border-color: #176b87; color: #fff; }
+.pick-btn { width: 100%; }
+
+.filter-row { display: grid; grid-template-columns: 1fr 110px; gap: 8px; margin: 10px 0; }
+
+.station-list { display: grid; gap: 10px; }
+.station-card {
+  text-align: left;
+  display: grid;
+  gap: 5px;
+  width: 100%;
+  background: #fbfcfe;
+  color: #172033;
+  border: 1px solid #dfe7f1;
+  border-left-width: 4px;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.station-card.st-正常 { border-left-color: #2e9b73; }
+.station-card.st-待卸 { border-left-color: #d98a1f; }
+.station-card.st-紧张 { border-left-color: #c84b31; }
+.station-card.selected { box-shadow: 0 0 0 2px rgba(23, 107, 135, .35); background: #f3f9fc; }
+.card-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.card-line { font-size: 13px; color: #536078; }
+.warn-line { font-size: 12px; color: #c84b31; font-weight: 700; }
+.warn-line.soft { color: #b36a0c; }
+
+/* ---- 地图 ---- */
+.map-panel { overflow: hidden; }
+.map-board {
+  height: 560px;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  background: #dbe6ea;
+}
+.map-board.picking { outline: 3px dashed #176b87; outline-offset: -3px; cursor: crosshair; }
+.map-pick-hint {
+  position: absolute;
+  z-index: 1000;
+  top: 12px;
+  left: 12px;
+  margin: 0;
+  background: rgba(23, 32, 51, .82);
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+}
+.map-legend { display: flex; gap: 12px; align-items: center; margin: 0; font-size: 12px; color: #536078; }
+.map-legend .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 3px; }
+.dot.st-正常 { background: #176b87; }
+.dot.st-待卸 { background: #d98a1f; }
+.dot.st-紧张 { background: #c84b31; }
+
+.station-marker-wrap { background: transparent; border: 0; }
+.station-marker {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  width: 76px;
+  height: 30px;
+  justify-content: flex-end;
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,.35));
+  cursor: pointer;
+}
+.marker-label {
+  background: var(--marker);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 1px 8px;
+  line-height: 1.6;
+}
+.marker-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--marker);
+  border: 2px solid #fff;
+  margin-top: 1px;
+}
+.station-marker.is-selected .marker-dot { box-shadow: 0 0 0 5px rgba(23, 107, 135, .25); }
+
+.map-popup { font-size: 13px; min-width: 210px; }
+.popup-title { margin: 0; font-size: 15px; font-weight: 800; }
+.popup-sub { margin: 2px 0 8px; color: #69758c; font-size: 12px; }
+.map-popup p { margin: 4px 0; }
+.popup-trips { margin: 6px 0 0; padding-left: 18px; display: grid; gap: 4px; }
+.popup-muted { color: #8a93a5; }
+
+/* ---- 排程台 ---- */
+.console { display: grid; gap: 14px; }
+.console-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.console-head h2 { margin: 2px 0; }
+.console-head .subtitle { margin: 4px 0 0; font-size: 13px; }
+
+.stock-card { border: 1px solid #dfe7f1; border-radius: 8px; padding: 14px; background: #fbfcfe; }
+.stock-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.metric-label { display: block; color: #69758c; font-size: 12px; }
+.stock-row strong { display: block; margin-top: 4px; font-size: 18px; }
+.stock-row strong.warn { color: #c84b31; }
+
+.inline-edit { display: flex; gap: 8px; margin-top: 10px; }
+.inline-edit input { max-width: 160px; }
+
+.gauge { position: relative; height: 12px; border-radius: 999px; background: #e7edf4; margin-top: 14px; overflow: visible; }
+.gauge-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, #176b87, #64b6ac); transition: width .3s; }
+.gauge-fill.low { background: linear-gradient(90deg, #c84b31, #e08a44); }
+.gauge-safety {
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  width: 2px;
+  background: #172033;
+}
+.gauge-safety::after {
+  content: "安全线";
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  color: #445069;
+  white-space: nowrap;
+}
+
+.alert { border-radius: 8px; padding: 10px 12px; margin-top: 12px; font-size: 13px; }
+.warn-alert { background: #fbe5e0; color: #8f2f1c; border: 1px solid #f2c4bb; }
+
+.trip-block h3, .dispatch-form h3, .diff-block h3 { margin: 0 0 10px; font-size: 15px; }
+.trip-card {
+  border: 1px solid #dfe7f1;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 10px;
+  background: #fff;
+}
+.trip-card.overdue { border-color: #e5a18f; background: #fff8f6; }
+.trip-title { margin: 0 0 6px; display: flex; align-items: center; gap: 8px; font-size: 15px; }
+.trip-meta { margin: 4px 0; font-size: 13px; color: #536078; }
+.trip-note { margin: 4px 0; font-size: 12px; color: #8a93a5; }
+.trip-actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 8px; }
+
+button.mini { padding: 5px 10px; font-size: 12px; border-radius: 6px; }
+button.ghost-danger { background: #fff; color: #c84b31; border: 1px solid #e5a18f; }
+button.ghost-danger:hover:not(:disabled) { background: #fbe5e0; }
+
+.unload-form {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  border-top: 1px dashed #dfe7f1;
+  padding-top: 10px;
+}
+.unload-form label { font-size: 12px; min-width: 130px; flex: 1; }
+.unload-form .grow { flex: 2; min-width: 180px; }
+
+.dispatch-form { border: 1px dashed #b9cadd; border-radius: 8px; padding: 14px; background: #f7fafd; }
+.form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.dispatch-btn { margin-top: 12px; width: 100%; background: #14724f; font-weight: 700; }
+
+.locked-tip {
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: #fdf0dd;
+  color: #8a5410;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.diff-block { border-top: 1px solid #eef2f7; padding-top: 12px; }
+.diff-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: 13px;
+  color: #536078;
+  padding: 6px 0;
+  border-bottom: 1px dashed #eef2f7;
+}
+
+/* ---- 台账/流水表格 ---- */
+.ledger, .triplog { margin-top: 18px; }
+.table-wrap { overflow-x: auto; }
+.ledger-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.ledger-table th, .ledger-table td {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid #eef2f7;
+  white-space: nowrap;
+}
+.ledger-table th { color: #69758c; font-weight: 700; background: #f7fafd; }
+.ledger-table tr.inactive { opacity: .55; }
+.ledger-table tr.rowNoShow { background: #fff8f6; }
+.ledger-table tr.rowDelivered td { color: #536078; }
+.ledger-table tr.row-diff { background: #fffaf8; }
+.op-cell { display: flex; gap: 6px; flex-wrap: wrap; }
+.op-cell .mini { white-space: nowrap; }
+
+.filter-pills { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.check-chip { display: flex; align-items: center; gap: 4px; font-size: 12px; color: #536078; }
+.check-chip input { width: auto; }
+.sub-title { margin: 18px 0 10px; font-size: 15px; }
+
+.empty-slot { display: flex; align-items: center; justify-content: center; min-height: 240px; }
+.page-foot { margin: 20px 0 8px; text-align: center; color: #8a93a5; font-size: 12px; }
+
+@media (max-width: 1280px) {
+  .layout-grid { grid-template-columns: 1fr 1fr; }
+  .station-panel { position: static; max-height: none; }
+  .console-slot { grid-column: 1 / -1; }
+}
+
+@media (max-width: 860px) {
+  .metrics-5 { grid-template-columns: repeat(2, 1fr); }
+  .layout-grid { grid-template-columns: 1fr; }
+  .stock-row { grid-template-columns: 1fr; }
+  .form-grid-2, .form-row { grid-template-columns: 1fr; }
+  .map-board { height: 380px; }
+}
